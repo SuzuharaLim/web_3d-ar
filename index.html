@@ -1,41 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>AR.js 自訂圖片展示3D模型</title>
-  <!-- 引入A-Frame -->
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <!-- 引入AR.js -->
-  <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js@2.3.1/aframe/build/aframe-ar.min.js"></script>
-  <!-- 自訂CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <!-- 自訂JavaScript -->
-  <script src="js/main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顯示鏡頭畫面</title>
+    <style>
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-  <!-- 遮罩層：攝影機載入提示 -->
-  <div class="overlay" id="camera-overlay">正在載入攝影機...</div>
-  <!-- 提示：掃描圖片 -->
-  <div class="loading">請對準圖片A...</div>
-  <!-- 錯誤訊息 -->
-  <div class="error" id="error-message" style="display: none;"></div>
-  <!-- A-Frame場景 -->
-  <a-scene
-    vr-mode-ui="enabled: false"
-    arjs="sourceType: webcam; sourceWidth: 1280; sourceHeight: 720; debugUIEnabled: false; detectionMode: mono; trackingMethod: best;"
-    embedded
-  >
-    <!-- 自訂圖片標記（可替換為preset='hiro'進行測試） -->
-    <a-marker type="pattern" url="assets/markers/customA.patt">
-      <!-- 3D模型 -->
-      <a-entity
-        gltf-model="url(assets/models/cube.gltf)"
-        position="0 0.5 0"
-        scale="0.5 0.5 0.5"
-        rotate-model
-      ></a-entity>
-    </a-marker>
-    <!-- 攝影機 -->
-    <a-entity camera></a-entity>
-  </a-scene>
+    <h1>鏡頭畫面</h1>
+    <video id="video" autoplay></video>
+    <script>
+        const video = document.getElementById('video');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(error => {
+                console.error('存取攝影機失敗: ', error);
+                alert('無法存取攝影機，請確認權限設置。');
+            });
+    </script>
+</body>
+</html>
