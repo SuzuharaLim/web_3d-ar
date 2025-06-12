@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>AR.js 自訂圖片展示3D模型與鏡頭畫面</title>
+  <title>AR.js 自訂圖片展示3D模型與即時相機畫面</title>
   <!-- 引入A-Frame -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <!-- 引入AR.js -->
@@ -15,14 +15,14 @@
 </head>
 <body>
   <!-- UI提示 -->
-  <div class="loading">請對準圖片A...</div>
+  <div class="loading">正在啟動相機，請稍候...</div>
   <div class="error" id="error-message" style="display: none;"></div>
   <!-- A-Frame場景 -->
   <a-scene
     vr-mode-ui="enabled: false"
-    arjs="sourceType: webcam; sourceWidth: 1280; sourceHeight: 720; debugUIEnabled: false;"
+    arjs="sourceType: webcam; sourceWidth: 1280; sourceHeight: 720; debugUIEnabled: false; trackingMethod: best;"
     embedded
-    renderer="colorManagement: true; physicallyCorrectLights: true;"
+    renderer="colorManagement: true; alpha: true;"
   >
     <!-- 自訂圖片標記（可替換為preset='hiro'進行測試） -->
     <a-marker type="pattern" url="assets/markers/customA.patt">
