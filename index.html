@@ -14,15 +14,16 @@
   <script src="js/main.js"></script>
 </head>
 <body>
-  <!-- 載入提示 -->
+  <!-- UI提示 -->
   <div class="loading">請對準圖片A...</div>
+  <div class="error" id="error-message" style="display: none;"></div>
   <!-- A-Frame場景 -->
   <a-scene
     vr-mode-ui="enabled: false"
-    arjs="sourceType: webcam; debugUIEnabled: false;"
+    arjs="sourceType: webcam; sourceWidth: 1280; sourceHeight: 720; debugUIEnabled: false;"
     embedded
   >
-    <!-- 自訂圖片標記 -->
+    <!-- 自訂圖片標記（可替換為preset='hiro'進行測試） -->
     <a-marker type="pattern" url="assets/markers/customA.patt">
       <!-- 3D模型 -->
       <a-entity
