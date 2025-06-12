@@ -14,13 +14,16 @@
   <script src="js/main.js"></script>
 </head>
 <body>
-  <!-- UI提示 -->
+  <!-- 遮罩層：攝影機載入提示 -->
+  <div class="overlay" id="camera-overlay">正在載入攝影機...</div>
+  <!-- 提示：掃描圖片 -->
   <div class="loading">請對準圖片A...</div>
+  <!-- 錯誤訊息 -->
   <div class="error" id="error-message" style="display: none;"></div>
   <!-- A-Frame場景 -->
   <a-scene
     vr-mode-ui="enabled: false"
-    arjs="sourceType: webcam; sourceWidth: 1280; sourceHeight: 720; debugUIEnabled: false;"
+    arjs="sourceType: webcam; sourceWidth: 1280; sourceHeight: 720; debugUIEnabled: false; detectionMode: mono; trackingMethod: best;"
     embedded
   >
     <!-- 自訂圖片標記（可替換為preset='hiro'進行測試） -->
@@ -36,5 +39,3 @@
     <!-- 攝影機 -->
     <a-entity camera></a-entity>
   </a-scene>
-</body>
-</html>
